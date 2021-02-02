@@ -10,6 +10,8 @@
     "static/js/3.42da820e.chunk.js": "/pwa-users/static/js/3.42da820e.chunk.js",
     "static/js/3.42da820e.chunk.js.map": "/pwa-users/static/js/3.42da820e.chunk.js.map",
     "index.html": "/pwa-users/index.html",
+    "service-worker.js": "/pwa-users/service-worker.js",
+    "service-worker.js.map": "/pwa-users/service-worker.js.map",
     "static/css/main.451d6d9d.chunk.css.map": "/pwa-users/static/css/main.451d6d9d.chunk.css.map",
     "static/js/2.00eded1e.chunk.js.LICENSE.txt": "/pwa-users/static/js/2.00eded1e.chunk.js.LICENSE.txt"
   },
