@@ -16,20 +16,12 @@ function App() {
   // const [user, setUser] = useState<UserInterface | null>(null);
 
   useEffect(() => {
-    fetch("https://reqres.in/api/users")
+    fetch("https://6021303e46f1e40017804036.mockapi.io/users")
       .then(users => users.json())
       .then((users: any) => {
-        setUsers(users.data);
+        setUsers(users);
       })
   }, []);
-
-  // const handleClick = (user: UserInterface) => {
-  //   setUser(user);
-  // }
-
-  // const handleBack = () => {
-  //   setUser(null);
-  // }
 
   return (
     <div className="App">

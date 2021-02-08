@@ -10,9 +10,12 @@
 
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
-import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
+import {
+  precacheAndRoute,
+  createHandlerBoundToURL
+} from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { CacheFirst } from 'workbox-strategies';
+import { NetworkFirst, CacheFirst } from 'workbox-strategies';
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -47,8 +50,6 @@ registerRoute(
       return false;
     }
 
-    console.log(request, url, '+++++++++++++++')
-
     // Return true to signal that we want to use the handler.
     return true;
   },
@@ -59,7 +60,9 @@ registerRoute(
 // precache, in this case same-origin .png requests like those from in public/
 registerRoute(
   // Add in any other file extensions or routing criteria as needed.
-  ({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'),
+  ({ url }) => {
+    return (url.pathname.endsWith('.png') || url.pathname.endsWith('.ico') || url.pathname.endsWith('.jpg'))
+  },
   // Customize this strategy as needed, e.g., by changing to CacheFirst.
   new CacheFirst({
     cacheName: 'images',
@@ -70,6 +73,15 @@ registerRoute(
     ],
   })
 );
+
+registerRoute(
+  ({ url }) => {
+    return url.hostname.includes('mockapi.io')
+  },
+  new NetworkFirst({
+    cacheName: 'apis'
+  })
+)
 
 // This allows the web app to trigger skipWaiting via
 // registration.waiting.postMessage({type: 'SKIP_WAITING'})
